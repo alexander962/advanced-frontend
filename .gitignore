@@ -13,6 +13,10 @@ dump.rdb
 __snapshots__
 /build/
 
+# File for personal notes
+NOTES.md
+
+
 npm-debug.log
 lib-cov
 *.seed
