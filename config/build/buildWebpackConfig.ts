@@ -27,7 +27,7 @@ export const buildWebpackConfig = (
     module: {
       // конфигурируем лоэдеры, они обрабатывают файлы, которые выходят за рамки js
       // png, jpeg, svg, css, scss, ts и другие
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     resolve: buildResolvers(),
     // сможем четко видеть, где в коде произошла ошибка
