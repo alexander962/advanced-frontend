@@ -1,4 +1,3 @@
-import path from "path";
 import { Configuration } from "webpack";
 import { BuildOptions } from "./types/config";
 import { buildPlugins } from "./buildPlugins";
@@ -10,24 +9,28 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
   const {paths, mode, isDev} = options;
   return {
     mode: mode,
-    // точка входа
+    // Точка входа в приложение
     entry: paths?.entry,
-    // указываем куда и как будем собирать приложение
+    // Выходные файлы сборки
     output: {
-      // указываем название
+      // Генерируем файлы с уникальным хэшем для кэширования
       filename: "[name].[contenthash].js",
-      // указываем путь
+      // Путь для сборки проекта
       path: paths?.build,
+      // Очищаем папку перед новой сборкой
       clean: true,
     },
+    // Подключаем плагины Webpack
     plugins: buildPlugins(options),
     module: {
-      // любая обработка файлов, которые выхолят за рамки js (ts, jpeg, png и так далее)
+      // Определяем правила загрузки различных типов файлов
       rules: buildLoaders(),
     },
+    // Настройка резолверов (расширения, алиасы и пр.)
     resolve: buildResolvers(),
     // сможем четко видеть, где в коде произошла ошибка
     devtool: isDev ? "inline-source-map" : undefined,
+    // Конфигурация dev-сервера (если режим разработки)
     devServer: isDev ? buildDevServer(options) : undefined,
   }
 }
