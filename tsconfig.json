@@ -7,7 +7,7 @@
     "module": "ESNext",
     // указываем версию, в которую код будет компилироваться
     "target": "es5",
-    "jsx": "react",
+    "jsx": "react-jsx",
     // позволяет компилятору обрабатывать не только ts файлы но и js
     "allowJs": true,
     "moduleResolution": "node",
