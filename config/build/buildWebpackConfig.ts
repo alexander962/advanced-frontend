@@ -24,7 +24,7 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
     plugins: buildPlugins(options),
     module: {
       // Определяем правила загрузки различных типов файлов
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
     // Настройка резолверов (расширения, алиасы и пр.)
     resolve: buildResolvers(),

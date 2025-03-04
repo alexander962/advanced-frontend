@@ -1,15 +1,28 @@
 import { RuleSetRule } from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from "./types/config";
 
 // Функция для создания массива правил загрузчиков (loaders)
-export function buildLoaders(): RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): RuleSetRule[] {
 
   const cssLoaders = {
     test: /\.s[ac]ss$/i,
     use: [
       // Creates `style` nodes from JS strings
-      "style-loader",
+      options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+
       // Translates CSS into CommonJS
-      "css-loader",
+      {
+        loader: "css-loader",
+        options: {
+          modules: {
+            auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+            localIdentName: options.isDev
+              ? '[path][name]__[local]--[hash:base64:8]'
+              : '[hash:base64:8]',
+          },
+        }
+      },
       // Compiles Sass to CSS
       "sass-loader",
     ],
