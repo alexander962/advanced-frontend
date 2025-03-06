@@ -7,7 +7,7 @@ import {BuildEnv, BuildPaths} from "./config/build/types/config";
 export default (env: BuildEnv) => {
   const paths: BuildPaths = {
     // Путь к точке входа приложения
-    entry: path.resolve(__dirname, "src", "index.ts"),
+    entry: path.resolve(__dirname, "src", "index.tsx"),
     // Путь для сборки проекта
     build: path.resolve(__dirname, "build"),
     // Путь к HTML-шаблону

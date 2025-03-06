@@ -1,9 +1,35 @@
 import { RuleSetRule } from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from "./types/config";
 
 // Функция для создания массива правил загрузчиков (loaders)
-export function buildLoaders(): RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): RuleSetRule[] {
+
+  const cssLoaders = {
+    test: /\.s[ac]ss$/i,
+    use: [
+      // Creates `style` nodes from JS strings
+      options.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+
+      // Translates CSS into CommonJS
+      {
+        loader: "css-loader",
+        options: {
+          modules: {
+            auto: (resPath: string) => Boolean(resPath.includes('.module.')),
+            localIdentName: options.isDev
+              ? '[path][name]__[local]--[hash:base64:8]'
+              : '[hash:base64:8]',
+          },
+        }
+      },
+      // Compiles Sass to CSS
+      "sass-loader",
+    ],
+  }
 
   // Загрузчик для TypeScript файлов
+  // Если не используем ts - нужен babel-loader
   const typescriptLoader = {
     // Проверяем файлы с расширением .ts и .tsx
       test: /\.tsx?$/,
@@ -16,5 +42,6 @@ export function buildLoaders(): RuleSetRule[] {
   return [
     // Добавляем TypeScript загрузчик в массив правил
     typescriptLoader,
+    cssLoaders
   ]
 }
