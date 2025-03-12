@@ -27,7 +27,7 @@ export function buildWebpackConfig(options: BuildOptions): Configuration {
       rules: buildLoaders(options),
     },
     // Настройка резолверов (расширения, алиасы и пр.)
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
     // сможем четко видеть, где в коде произошла ошибка
     devtool: isDev ? "inline-source-map" : undefined,
     // Конфигурация dev-сервера (если режим разработки)
