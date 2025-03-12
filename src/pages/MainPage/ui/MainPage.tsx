@@ -1,5 +1,4 @@
 import {FC} from 'react';
-import {App} from "../../App";
 
 interface Props {
   className?: string;
