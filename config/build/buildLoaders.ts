@@ -4,6 +4,10 @@ import {BuildOptions} from "./types/config";
 
 // Функция для создания массива правил загрузчиков (loaders)
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
+  const svgLoader = {
+    test: /\.svg$/,
+    use: ['@svgr/webpack'],
+  }
 
   const cssLoaders = {
     test: /\.s[ac]ss$/i,
@@ -39,7 +43,18 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
       exclude: /node_modules/,
   }
 
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+      },
+    ],
+  }
+
   return [
+    fileLoader,
+    svgLoader,
     // Добавляем TypeScript загрузчик в массив правил
     typescriptLoader,
     cssLoaders
