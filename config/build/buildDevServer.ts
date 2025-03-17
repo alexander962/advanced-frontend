@@ -8,5 +8,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: true,
     // позволяет нам находясь на любом роуте открывать страницу
     historyApiFallback: true,
+    hot: true,
   }
 }
