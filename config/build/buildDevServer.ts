@@ -1,5 +1,5 @@
-import { BuildOptions } from "./types/config";
-import { Configuration as DevServerConfiguration } from "webpack-dev-server";
+import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import { BuildOptions } from './types/config';
 
 export function buildDevServer(options: BuildOptions): DevServerConfiguration {
   return {
@@ -9,5 +9,5 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     // позволяет нам находясь на любом роуте открывать страницу
     historyApiFallback: true,
     hot: true,
-  }
+  };
 }

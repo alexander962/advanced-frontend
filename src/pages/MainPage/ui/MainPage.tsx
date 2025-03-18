@@ -1,11 +1,11 @@
-import {FC} from 'react';
-import {useTranslation} from "react-i18next";
+import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   className?: string;
 }
 
-const MainPage: FC<Props> = ({className}) => {
+const MainPage: FC<Props> = ({ className }) => {
   const { t } = useTranslation();
 
   return (
