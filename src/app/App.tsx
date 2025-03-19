@@ -12,7 +12,6 @@ export const App: FC = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">
-        fdfdss
         <Navbar />
         <div className="content-page">
           <Sidebar />
