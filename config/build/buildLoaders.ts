@@ -1,33 +1,33 @@
-import { RuleSetRule } from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {BuildOptions} from "./types/config";
+import { RuleSetRule } from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BuildOptions } from './types/config';
 
 // Функция для создания массива правил загрузчиков (loaders)
 export function buildLoaders(options: BuildOptions): RuleSetRule[] {
   const svgLoader = {
     test: /\.svg$/,
     use: ['@svgr/webpack'],
-  }
+  };
 
   const babelLoader = {
     test: /\.(js|jsx|tsx)$/,
     exclude: /node_modules/,
     use: {
-      loader: "babel-loader",
+      loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
-        "plugins": [
+        plugins: [
           [
-            "i18next-extract",
+            'i18next-extract',
             {
               locales: ['ru', 'en'],
-              keyAsDefaultValue: true
-            }
-          ]
-        ]
-      }
-    }
-  }
+              keyAsDefaultValue: true,
+            },
+          ],
+        ],
+      },
+    },
+  };
 
   const cssLoaders = {
     test: /\.s[ac]ss$/i,
@@ -37,7 +37,7 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
 
       // Translates CSS into CommonJS
       {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
           modules: {
             auto: (resPath: string) => Boolean(resPath.includes('.module.')),
@@ -45,23 +45,23 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
               ? '[path][name]__[local]--[hash:base64:8]'
               : '[hash:base64:8]',
           },
-        }
+        },
       },
       // Compiles Sass to CSS
-      "sass-loader",
+      'sass-loader',
     ],
-  }
+  };
 
   // Загрузчик для TypeScript файлов
   // Если не используем ts - нужен babel-loader
   const typescriptLoader = {
     // Проверяем файлы с расширением .ts и .tsx
-      test: /\.tsx?$/,
+    test: /\.tsx?$/,
     // Используем ts-loader для компиляции TypeScript в JavaScript
-      use: 'ts-loader',
+    use: 'ts-loader',
     // Исключаем папку node_modules, чтобы ускорить сборку
-      exclude: /node_modules/,
-  }
+    exclude: /node_modules/,
+  };
 
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff2|woff)$/i,
@@ -70,7 +70,7 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
         loader: 'file-loader',
       },
     ],
-  }
+  };
 
   return [
     fileLoader,
@@ -78,6 +78,6 @@ export function buildLoaders(options: BuildOptions): RuleSetRule[] {
     babelLoader,
     // Добавляем TypeScript загрузчик в массив правил
     typescriptLoader,
-    cssLoaders
-  ]
+    cssLoaders,
+  ];
 }
