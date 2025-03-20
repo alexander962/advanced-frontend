@@ -1,6 +1,7 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack, { WebpackPluginInstance, ProgressPlugin } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 // возвращаем список плагинов
@@ -20,5 +21,9 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
     }),
     // позволяет обновить приложение без обновления страницы
     new webpack.HotModuleReplacementPlugin(),
+    // плагин чтобы следить за размером бандла
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }),
   ];
 }
