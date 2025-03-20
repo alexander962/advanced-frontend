@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BugButton } from 'app/providers/ErrorBoundary';
 
 interface Props {
   className?: string;
@@ -10,6 +11,7 @@ const MainPage: FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
+      <BugButton />
       {t('Главная страница')}
     </div>
   );
