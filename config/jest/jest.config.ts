@@ -1,3 +1,5 @@
+import path from 'path';
+
 export default {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -28,11 +30,21 @@ export default {
   moduleDirectories: [
     'node_modules',
   ],
+  modulePaths: [
+    '<rootDir>/src',
+  ],
   rootDir: '../../',
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
   // регулярные выражения, по которым мы находим файлы с тестами
   testMatch: [
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+    // своего рода мок, который будет присутствовать у всех импортов
+    // в которых будут присутствовать расширение svg
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+  },
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,

@@ -54,10 +54,26 @@ module.exports = {
     // отключаем запрет на использование нижних подчеркиваний
     'no-underscore-dangle': 'off',
     // делаем, чтобы ругалс на отсутствие переводов только внутри jsx
-    'i18next/no-literal-string': ['error', { markupOnly: true }],
+    'i18next/no-literal-string': [
+      'error',
+      {
+        markupOnly: true,
+        ignoreAttribute: ['data-testid'],
+      },
+    ],
     'max-len': ['error', { ignoreComments: true, code: 100 }],
   },
   globals: {
     __IS_DEV__: true,
+    // переопределяем правила для определенных файлов
+    overrides: [
+      {
+        // отключаем переводы для тестовых файлов
+        files: ['**/src/**/*.test.{ts, tsx}'],
+        rules: {
+          'i18next/no-literal-string': 'off'
+        }
+      }
+    ]
   },
 };
