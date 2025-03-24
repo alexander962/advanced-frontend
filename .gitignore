@@ -26,3 +26,5 @@ lib-cov
 *.snap
 
 .werf_secret_key
+
+*storybook.log
