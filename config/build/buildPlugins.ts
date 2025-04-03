@@ -6,7 +6,7 @@ import { BuildOptions } from './types/config';
 
 // возвращаем список плагинов
 export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
-  return [
+  const plugins = [
     new HtmlWebpackPlugin({
       template: paths?.html,
     }),
@@ -19,11 +19,17 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),
-    // позволяет обновить приложение без обновления страницы
-    new webpack.HotModuleReplacementPlugin(),
-    // плагин чтобы следить за размером бандла
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-    }),
   ];
+
+  // добавляем плагины, нужные только при разработке, чтобы не попали на прод
+  if (isDev) {
+    // позволяет обновить приложение без обновления страницы
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    // плагин чтобы следить за размером бандла
+    plugins.push(new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }));
+  }
+
+  return plugins;
 }

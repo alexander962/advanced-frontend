@@ -1,18 +1,14 @@
 .lds-ellipsis {
-  /* change color here */
   color: #1c4c5b;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
 
 .lds-ellipsis,
 .lds-ellipsis div {
   box-sizing: border-box;
-}
-
-.lds-ellipsis {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
 }
 
 .lds-ellipsis div {
