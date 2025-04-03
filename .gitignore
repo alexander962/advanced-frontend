@@ -28,3 +28,4 @@ lib-cov
 .werf_secret_key
 
 *storybook.log
+/storybook-static
