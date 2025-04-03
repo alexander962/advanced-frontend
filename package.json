@@ -12,10 +12,10 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "storybook:start": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook",
-    "test:ui:ci": "loki test --requireReference --config=loki.config.js",
-    "test:ui:ok": "loki update --config=loki.config.js"
+    "test:ui": "loki test --requireReference --config=loki.config.js",
+    "test:ui:ok": "loki update --config=loki.config.js",
+    "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static"
   },
   "keywords": [],
   "author": "",
