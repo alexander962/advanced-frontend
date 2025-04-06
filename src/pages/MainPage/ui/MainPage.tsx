@@ -11,7 +11,6 @@ const MainPage: FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
-      <BugButton />
       {t('Главная страница')}
     </div>
   );

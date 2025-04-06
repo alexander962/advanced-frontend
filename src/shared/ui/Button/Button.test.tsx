@@ -4,7 +4,7 @@
 
 import { render, screen } from '@testing-library/react';
 import { Button } from 'shared/ui/Button/Button';
-import { ThemeButton } from './Button';
+import { ButtonTheme } from './Button';
 
 describe('Button', () => {
   test('Test render', () => {
@@ -14,7 +14,7 @@ describe('Button', () => {
 
   // проверяем что кнопка имеет соответствующий класс
   test('Test clear theme', () => {
-    render(<Button theme={ThemeButton.CLEAR}>TEST</Button>);
+    render(<Button theme={ButtonTheme.CLEAR}>TEST</Button>);
     expect(screen.getByText('TEST')).toHaveClass('clear');
     // смотрим что у нас отрендерилось, какая разметка
     screen.debug();
