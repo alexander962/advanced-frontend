@@ -54,6 +54,9 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     // отключаем запрет на использование нижних подчеркиваний
     'no-underscore-dangle': 'off',
+    // отключаем ошибки по семантике, доступности и прочему
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     // делаем, чтобы ругалс на отсутствие переводов только внутри jsx
     'i18next/no-literal-string': [
       'error',
