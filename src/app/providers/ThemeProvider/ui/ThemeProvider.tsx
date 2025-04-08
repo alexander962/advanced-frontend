@@ -3,9 +3,17 @@ import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from '../lib/ThemeContex
 
 const defaultTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme || Theme.LIGHT;
 
+interface ThemeProviderProps {
+  initialTheme?: Theme;
+}
+
 // в данном случае провайдер нужен, чтобы иметь глобальный доступ с любого компонента к темам
-export const ThemeProvider: FC = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
+export const ThemeProvider: FC<ThemeProviderProps> = (props) => {
+  const {
+    initialTheme,
+    children,
+  } = props;
+  const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme);
 
   // useMemo - позволяет мемоизировать значение объект, массива и каждый раз не создавать
   // новый, а использовать уже существующий если из массива зависимостей ничего не изменилось
