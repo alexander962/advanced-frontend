@@ -17,11 +17,6 @@ const MainPage: FC<Props> = ({ className }) => {
   return (
     <div className={className}>
       {t('Главная страница')}
-      <Input
-        value={value}
-        onChange={onChange}
-        placeholder="Введите текст"
-      />
     </div>
   );
 };
