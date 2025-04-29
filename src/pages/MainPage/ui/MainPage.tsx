@@ -10,7 +10,7 @@ const MainPage: FC<Props> = ({ className }) => {
 
   return (
     <div className={className}>
-      {t('Главная страница!')}
+      {t('Главная страница')}
     </div>
   );
 };
