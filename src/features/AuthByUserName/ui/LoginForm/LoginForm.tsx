@@ -17,6 +17,8 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
   const dispatch = useDispatch();
   const { username, password } = useSelector(getLoginState);
 
+  // для всех функций, которые мы передаем пропсом, мы используем useCallback
+  // чтобы ссылка у нас никогда не менялась
   const onChangeUsername = useCallback((value: string) => {
     dispatch(loginActions.setUsername(value));
   }, [dispatch]);
