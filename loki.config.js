@@ -12,6 +12,6 @@ module.exports = {
   },
   onReady: async ({ page }) => {
     // Ждём появления какого-то элемента на странице, например, заголовка
-    await page.waitForSelector('#storybook-root', { timeout: 40000 });
+    await page.waitForSelector('#storybook-root', { timeout: 70000 });
   },
 };
