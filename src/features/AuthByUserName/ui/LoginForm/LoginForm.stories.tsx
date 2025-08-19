@@ -5,10 +5,6 @@ import { LoginForm } from './LoginForm';
 const meta = {
   title: 'feature/LoginForm',
   component: LoginForm,
-  parameters: {
-    layout: 'fullscreen',
-  },
-  tags: ['autodocs'],
 } satisfies Meta<typeof LoginForm>;
 
 export default meta;
@@ -18,5 +14,19 @@ export const Primary: Story = {
   args: {},
   decorators: [StoreDecorator({
     loginForm: { username: '123', password: 'abc' },
+  })],
+};
+
+export const withError: Story = {
+  args: {},
+  decorators: [StoreDecorator({
+    loginForm: { username: '123', password: 'abc', error: 'ERROR' },
+  })],
+};
+
+export const Loading: Story = {
+  args: {},
+  decorators: [StoreDecorator({
+    loginForm: { isLoading: true },
   })],
 };
