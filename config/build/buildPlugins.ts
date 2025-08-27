@@ -21,15 +21,14 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
     }),
   ];
 
-  // плагин чтобы следить за размером бандла
-  plugins.push(new BundleAnalyzerPlugin({
-    openAnalyzer: false,
-  }));
-
   // добавляем плагины, нужные только при разработке, чтобы не попали на прод
   if (isDev) {
     // позволяет обновить приложение без обновления страницы
     plugins.push(new webpack.HotModuleReplacementPlugin());
+    // плагин чтобы следить за размером бандла
+    plugins.push(new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }));
   }
 
   return plugins;
